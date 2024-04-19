@@ -14,7 +14,20 @@ defaults:
     working-directory: modermodemet
 jobs:
   build:
-
+  
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+          
     name: Build and test
     runs-on: ubuntu-latest
 
@@ -33,5 +46,17 @@ jobs:
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
       run: mix deps.get
+    - name: Run migrations
+      env:
+        MIX_ENV: test
+        PGHOST: localhost
+        POSTGRES_PORT: 5432
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+      run:
+        mix ecto.drop
+        mix ecto.create
+        mix ecto.migrate
     - name: Run tests
-      run: mix test
+      run:
+        mix test
