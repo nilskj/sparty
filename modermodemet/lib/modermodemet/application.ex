@@ -18,7 +18,9 @@ defmodule Modermodemet.Application do
       # Start a worker by calling: Modermodemet.Worker.start_link(arg)
       # {Modermodemet.Worker, arg},
       # Start to serve requests, typically the last entry
-      ModermodemetWeb.Endpoint
+      ModermodemetWeb.Endpoint,
+      Modermodemet.GameRegistry,
+      Modermodemet.GameSupervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
