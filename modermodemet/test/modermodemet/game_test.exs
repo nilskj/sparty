@@ -10,15 +10,15 @@ defmodule Modermodemet.Game.Test do
   end
 
   test "list_games/0 returns a list of games" do
-    # Start by ensuring no games are running
-    assert {:ok, []} = GameManagement.list_games()
+    # Start by capturing the current state. It may return an empty or non-empty list
+    {:ok, games_before} = GameManagement.list_games()
 
     # Create a game
     {:ok, _game} = GameManagement.create_game()
 
-    # Now list_games should return at least one game
-    assert {:ok, games} = GameManagement.list_games()
-    assert length(games) > 0
+    # Now list_games should return at least one more game
+    {:ok, games_after} = GameManagement.list_games()
+
+    assert length(games_after) == length(games_before) + 1
   end
 end
-
