@@ -32,7 +32,7 @@ defmodule ModermodemetWeb.ConnCase do
   end
 
   setup tags do
-    Modermodemet.DataCase.setup_sandbox(tags)
+    # Modermodemet.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end
