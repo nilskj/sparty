@@ -7,9 +7,9 @@
 # General application configuration
 import Config
 
-config :modermodemet,
-  ecto_repos: [Modermodemet.Repo],
-  generators: [timestamp_type: :utc_datetime]
+# config :modermodemet,
+#   ecto_repos: [Modermodemet.Repo],
+#   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
 config :modermodemet, ModermodemetWeb.Endpoint,

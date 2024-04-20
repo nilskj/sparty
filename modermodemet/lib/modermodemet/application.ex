@@ -9,7 +9,7 @@ defmodule Modermodemet.Application do
   def start(_type, _args) do
     children = [
       ModermodemetWeb.Telemetry,
-      Modermodemet.Repo,
+      # Modermodemet.Repo,
       {DNSCluster, query: Application.get_env(:modermodemet, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Modermodemet.PubSub},
       ModermodemetWeb.Presence,
