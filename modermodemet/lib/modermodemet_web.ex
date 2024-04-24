@@ -54,6 +54,7 @@ defmodule ModermodemetWeb do
       use Phoenix.LiveView,
         layout: {ModermodemetWeb.Layouts, :app}
 
+      import LiveSvelte
       unquote(html_helpers())
     end
   end
@@ -86,6 +87,8 @@ defmodule ModermodemetWeb do
       # Core UI components and translation
       import ModermodemetWeb.CoreComponents
       import ModermodemetWeb.Gettext
+
+      import LiveSvelte
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

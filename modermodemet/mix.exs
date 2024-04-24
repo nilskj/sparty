@@ -57,6 +57,7 @@ defmodule Modermodemet.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
+      {:live_svelte, "~> 0.13.1"},
       {:bandit, "~> 1.2"}
     ]
   end
@@ -69,15 +70,20 @@ defmodule Modermodemet.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      setup: ["deps.get", "cmd --cd assets npm install"],
+      # "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      # "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind modermodemet", "esbuild modermodemet"],
+      # "assets.deploy": [
+      #   "tailwind modermodemet --minify",
+      #   "esbuild modermodemet --minify",
+      #   "phx.digest"
+      # ]
       "assets.deploy": [
-        "tailwind modermodemet --minify",
-        "esbuild modermodemet --minify",
+        "tailwind default --minify",
+        "cmd --cd assets node build.js --deploy",
         "phx.digest"
       ]
     ]
