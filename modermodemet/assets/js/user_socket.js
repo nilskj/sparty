@@ -58,7 +58,7 @@ let channel = socket.channel("room:lobby", {})
 let chatInput = document.querySelector("#chat-input")
 let messagesContainer = document.querySelector("#messages")
 
-chatInput.addEventListener("keypress", event => {
+chatInput?.addEventListener("keypress", event => {
   if (event.key === 'Enter') {
     channel.push("new_msg", { body: chatInput.value })
     chatInput.value = ""
